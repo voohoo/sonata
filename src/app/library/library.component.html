@@ -1,3 +1,5 @@
+<app-search (searchEvent)="updateTracks($event)" (topTracksEvent)="getTopTracks()"></app-search>
+
 <div class="tracks-container">
   <table mat-table [dataSource]="tracks" matSort>
 
@@ -13,9 +15,9 @@
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="artist.name">
+    <ng-container matColumnDef="artist">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Artist </th>
-      <td mat-cell *matCellDef="let element"> {{element.artist.name}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.artist}} </td>
     </ng-container>
 
     <ng-container matColumnDef="album">

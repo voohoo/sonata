@@ -12,17 +12,32 @@ export class LibraryComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns: string[] = ['cover', 'name', 'artist.name', 'album'];
+  displayedColumns: string[] = ['cover', 'name', 'artist', 'album'];
   tracks: any;
 
   constructor(private ss: SearchService) { }
 
   ngOnInit() {
+    this.getTopTracks();
+  }
+
+  getTopTracks() {
     this.ss.getTopTracks()
       .subscribe(data => {
-        this.tracks = new MatTableDataSource(data['tracks']['track']);
+        let tracks = data['tracks']['track'];
+        // format to display in table properly
+        for (let i = 0; i < tracks.length; i++) {
+          tracks[i]['artist'] = tracks[i]['artist']['name'];
+        }
+        this.tracks = new MatTableDataSource(tracks);
         this.tracks.sort = this.sort;
       });
+  }
+
+  updateTracks(tracks) {
+    tracks = tracks['results']['trackmatches']['track'];
+    this.tracks = new MatTableDataSource(tracks);
+    this.tracks.sort = this.sort;
   }
 
 }
