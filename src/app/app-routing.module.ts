@@ -3,12 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LibraryComponent } from './library/library.component';
 
-const routes: Routes = [
-  {
-    path: '',
-    component:LibraryComponent
-  }
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
