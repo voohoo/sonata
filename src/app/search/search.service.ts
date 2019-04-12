@@ -14,4 +14,8 @@ export class SearchService {
   getTopTracks() {
     return this.http.get(`${this.uri}?method=chart.gettoptracks&api_key=${this.apiKey}&format=json`);
   }
+
+  searchByTrack(trackTitle) {
+    return this.http.get(`${this.uri}?method=track.search&track=${trackTitle}&api_key=${this.apiKey}&format=json`);
+  }
 }
