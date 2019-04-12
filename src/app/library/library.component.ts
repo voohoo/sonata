@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort, MatTableDataSource } from '@angular/material';
 
-import Track from './Track';
+import { SearchService } from '../search/search.service';
 
 @Component({
   selector: 'app-library',
@@ -9,17 +10,19 @@ import Track from './Track';
 })
 export class LibraryComponent implements OnInit {
 
-  displayedColumns: string[] = ['title', 'artist', 'album'];
+  @ViewChild(MatSort) sort: MatSort;
 
-  tracks: Track[] = [
-    { title: 'Apocalypse Dreams', artist: 'Tame Impala', album: 'Lonerism' },
-    { title: 'Bound 2', artist: 'Kanye West', album: 'Yeezus' },
-    { title: 'Doing It Right', artist: 'Daft Punk', album: 'RAM' }
-  ];
+  displayedColumns: string[] = ['cover', 'name', 'artist.name', 'album'];
+  tracks: any;
 
-  constructor() { }
+  constructor(private ss: SearchService) { }
 
   ngOnInit() {
+    this.ss.getTopTracks()
+      .subscribe(data => {
+        this.tracks = new MatTableDataSource(data['tracks']['track']);
+        this.tracks.sort = this.sort;
+      });
   }
 
 }

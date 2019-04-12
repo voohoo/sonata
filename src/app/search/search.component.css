@@ -1,0 +1,29 @@
+.search-form {
+  z-index: 6;
+  padding-top: 10px;
+  min-width: 150px;
+  max-width: 400px;
+  width: 100%;
+  font-size: 16px;
+  position: absolute;
+  right: 30px;
+}
+
+.input-full-width {
+  width: 100%;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.top-bar {
+  z-index: 5;
+  top: 0;
+  position: fixed;
+  height: 72px;
+}
+
+#sonata-brand {
+  height: 40px;
+}
