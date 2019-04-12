@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
+import { SearchService } from './search.service';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  @Output() searchEvent = new EventEmitter<any>();
+  @Output() topTracksEvent = new EventEmitter<any>();
+
+  searchText: string;
+
+  constructor(private ss: SearchService) { }
 
   ngOnInit() {
+  }
+
+  search() {
+    this.ss.searchByTrack(this.searchText)
+      .subscribe(data => {
+        this.searchEvent.emit(data);
+      });
+  }
+
+  getTopTracks() {
+    this.topTracksEvent.emit();
   }
 
 }

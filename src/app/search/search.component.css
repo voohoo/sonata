@@ -9,12 +9,12 @@
   right: 30px;
 }
 
-.input-full-width {
-  width: 100%;
+.mat-input-element {
+  color: white;
 }
 
-.fill-remaining-space {
-  flex: 1 1 auto;
+.input-full-width {
+  width: 100%;
 }
 
 .top-bar {
@@ -26,4 +26,5 @@
 
 #sonata-brand {
   height: 40px;
+  cursor: pointer;
 }

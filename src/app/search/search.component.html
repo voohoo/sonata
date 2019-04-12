@@ -1,9 +1,9 @@
 <mat-toolbar class="mat-elevation-z5 top-bar">
-  <img id="sonata-brand" src="/assets/img/sonata-white.png">
+  <img id="sonata-brand" src="/assets/img/sonata-white.png" (click)="getTopTracks()">
 </mat-toolbar>
 
-<form class="search-form">
+<form class="search-form" (submit)="search()" onsubmit="return false" novalidate="">
   <mat-form-field class="input-full-width">
-    <input matInput placeholder="Search" class="search-input">
+    <input matInput [(ngModel)]="searchText" name="searchText" placeholder="Search for a track" class="search-input">
   </mat-form-field>
 </form>
